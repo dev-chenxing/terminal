@@ -6,8 +6,9 @@ import { getColorfulPrompt, processPrompt } from "../../lib/utils";
 import { v4 as uuidv4 } from "uuid";
 import parse from "html-react-parser";
 import { useUsernameContext } from "../../context/UsernameContext";
-import { getCommandResponse, MOTD } from "../../lib/commands";
+import { getCommandResponse } from "../../lib/commands";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import welcome from "../../lib/welcome";
 
 interface TerminalBodyProps {}
 
@@ -15,7 +16,7 @@ const TerminalBody: FC<TerminalBodyProps> = () => {
   const { username, setUsername } = useUsernameContext();
 
   const [history, setHistory] = useState<History[]>([]);
-  const [motdVisible, setMotdVisible] = useState(true);
+  const [welcomeVisible, setWelcomeVisible] = useState(true);
   const [promptHistory, setPromptHistory] = useLocalStorage<string[]>(
     "promptHistory",
     []
@@ -25,7 +26,7 @@ const TerminalBody: FC<TerminalBodyProps> = () => {
 
   function handleClear() {
     setHistory([]);
-    setMotdVisible(false);
+    setWelcomeVisible(false);
   }
 
   function handlePromptEnter(prompt: string) {
@@ -65,7 +66,7 @@ const TerminalBody: FC<TerminalBodyProps> = () => {
 
   return (
     <section className="terminal-scrollbar h-full w-full overflow-y-scroll px-1 pb-2 pt-1 text-sm text-fg [&_a]:cursor-default hover:[&_a]:underline [&_b]:text-cyan">
-      {motdVisible && parse(MOTD + "<br/><br/>")}
+      {welcomeVisible && parse(welcome + "<br/><br/>")}
 
       {history.map((item) => (
         <Fragment key={item.id}>
