@@ -1,5 +1,4 @@
 import { FC, ReactNode } from "react";
-import { GiAlliedStar } from "react-icons/gi";
 import { twMerge } from "tailwind-merge";
 import { hostname } from "../../TerminalConfig.json"
 
@@ -11,13 +10,9 @@ interface TerminalPromptProps {
 const TerminalPrompt: FC<TerminalPromptProps> = ({ children, username }) => {
   const isRoot = username === "root";
   const borderColor = isRoot ? "text-blue" : "text-green";
-  const usernameColor = isRoot ? "text-red" : "text-blue";
+  const usernameColor = isRoot ? "text-cyan" : "text-blue";
 
-  const icon = isRoot ? (
-    <>💀</>
-  ) : (
-    <GiAlliedStar className="mt-[-1px] inline-block" />
-  );
+  const icon = isRoot ? <>🌱</> : <>👨‍💻</>;
 
   return (
     <div className="relative flex w-full flex-col">
