@@ -1,4 +1,5 @@
 import { Prompt } from "../types";
+import cat from "./commands/cat";
 
 
 const COMMANDS: Record<
@@ -9,9 +10,9 @@ const COMMANDS: Record<
   whoami: (username) => username,
   pwd: () => "/",
   date: () => new Date().toLocaleDateString(),
-  github: () => openLink("https://github.com/0l1v3rr"),
-  cat: () =>
-    `Here's a cute cat for you! 🐱<br/><br/>${openLink("https://cataas.com/cat/cute")}`,
+  github: () => openLink("https://github.com/"),
+  cat: (_, args) =>
+    cat(args),
   echo: (_, args) => args.join("&nbsp;"),
   history: (_, __, history) => history.join("<br/>"),
 };
@@ -37,9 +38,7 @@ export function getCommandResponse(
   }
 
   if (command === "help") {
-    return `Usage: [command] [options] 
-    
-      ${COMMAND_NAMES.join(", ")}`.replace(/\n/g, "<br/>");
+    return COMMAND_NAMES.join("<br/>")
   }
 
   return `${command}: command not found`;

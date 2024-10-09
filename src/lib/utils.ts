@@ -19,7 +19,8 @@ export function getColorfulPrompt(input: string) {
 }
 
 export function processPrompt(input: string): Prompt {
-  const pieces = input.split(" ");
+  let pieces = input.match(/[^\s"]+|"([^"]*)"/g) || input.split(" ");
+  pieces = pieces.map((piece) => piece.replace(/['"]+/g, ''))
   let sudo = false;
 
   if (pieces[0] === "sudo") {
