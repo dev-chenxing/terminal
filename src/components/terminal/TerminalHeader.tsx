@@ -10,7 +10,7 @@ const TerminalHeader: FC<TerminalHeaderProps> = () => {
   const { username } = useUsernameContext();
 
   return (
-    <header className="relative flex select-none items-center justify-between rounded-tl-md rounded-tr-md border-b border-solid border-black/[.3] bg-black/[.5] px-4 py-2.5 font-segoe font-semibold">
+    <header className="relative flex select-none items-center justify-between rounded-tl-md rounded-tr-md border-b border-solid border-black/[.3] bg-black/[.5] px-4 py-2.5 font-monospace font-semibold">
       <IoTerminal className="text-muted opacity-75" />
 
       <div className="absolute left-1/2 top-1/2 h-fit w-fit -translate-x-1/2 -translate-y-1/2 text-muted">

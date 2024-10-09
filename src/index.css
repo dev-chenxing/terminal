@@ -7,6 +7,20 @@
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+.ls {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(160px, 24vw), 1fr));
+  column-gap: 10px;
+}
+
+.ls span {
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  -o-text-overflow: '...';
+  text-overflow: '...';
+}
+
 @layer base {
   .terminal-scrollbar::-webkit-scrollbar {
     @apply w-[.75rem];

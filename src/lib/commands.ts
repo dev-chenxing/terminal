@@ -1,6 +1,6 @@
 import { Prompt } from "../types";
 import cat from "./commands/cat";
-
+import ls from "./commands/ls";
 
 const COMMANDS: Record<
   string,
@@ -11,8 +11,8 @@ const COMMANDS: Record<
   pwd: () => "/",
   date: () => new Date().toLocaleDateString(),
   github: () => openLink("https://github.com/"),
-  cat: (_, args) =>
-    cat(args),
+  cat: (_, args) => cat(args),
+  ls: () => ls(),
   echo: (_, args) => args.join("&nbsp;"),
   history: (_, __, history) => history.join("<br/>"),
 };
@@ -32,8 +32,6 @@ export function getCommandResponse(
   if (command in COMMANDS) {
     let result = COMMANDS[command](username, args, history);
     result = result.replace(/\n/g, "<br/>");
-
-
     return result;
   }
 
