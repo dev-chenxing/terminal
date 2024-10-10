@@ -10,7 +10,6 @@
 
 ![My Skills](https://skillicons.dev/icons?i=ts,react,tailwind&theme=light)
 
-
 ## Building from source
 
 ```sh

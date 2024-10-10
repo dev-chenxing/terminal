@@ -2,9 +2,9 @@ import { FC } from "react";
 import { GrFormClose } from "react-icons/gr";
 import { useUsernameContext } from "../../context/UsernameContext";
 import { IoTerminal } from "react-icons/io5";
-import { hostname } from "../../TerminalConfig.json"
+import { hostname } from "../../TerminalConfig.json";
 
-interface TerminalHeaderProps { }
+interface TerminalHeaderProps {}
 
 const TerminalHeader: FC<TerminalHeaderProps> = () => {
   const { username } = useUsernameContext();

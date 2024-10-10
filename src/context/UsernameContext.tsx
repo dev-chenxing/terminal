@@ -6,7 +6,7 @@ import {
   useEffect,
 } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { hostname } from "../TerminalConfig.json"
+import { hostname } from "../TerminalConfig.json";
 
 interface UsernameContextType {
   username: string;
@@ -27,7 +27,7 @@ export function useUsernameContext() {
   return context;
 }
 
-interface UsernameContextProviderProps extends PropsWithChildren { }
+interface UsernameContextProviderProps extends PropsWithChildren {}
 
 const UsernameContextProvider: FC<UsernameContextProviderProps> = ({
   children,

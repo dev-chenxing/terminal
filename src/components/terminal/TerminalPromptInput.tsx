@@ -91,7 +91,7 @@ const TerminalPromptInput: FC<TerminalPromptInputProps> = ({
           setCaretPosition(e.target.selectionStart ?? 0);
           setCurrentHistoryIndex(history.length);
         }}
-        className="w-full cursor-default whitespace-nowrap bg-transparent p-0 text-white text-transparent focus:outline-none"
+        className="w-full cursor-default whitespace-nowrap bg-transparent p-0 text-transparent text-white focus:outline-none"
       />
 
       {autocompleteCommand && (
