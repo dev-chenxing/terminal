@@ -8,9 +8,9 @@ import parse from "html-react-parser";
 import { useUsernameContext } from "../../context/UsernameContext";
 import { getCommandResponse } from "../../lib/commands";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import welcome from "../../lib/welcome";
+import cat from "../../lib/commands/cat";
 
-interface TerminalBodyProps {}
+interface TerminalBodyProps { }
 
 const TerminalBody: FC<TerminalBodyProps> = () => {
   const { username, setUsername } = useUsernameContext();
@@ -66,7 +66,7 @@ const TerminalBody: FC<TerminalBodyProps> = () => {
 
   return (
     <section className="terminal-scrollbar h-full w-full overflow-y-scroll px-1 pb-2 pt-1 text-sm text-fg [&_a]:cursor-default hover:[&_a]:underline [&_b]:text-cyan">
-      {welcomeVisible && parse(welcome + "<br/><br/>")}
+      {welcomeVisible && parse(cat(["welcome.txt"]))}
 
       {history.map((item) => (
         <Fragment key={item.id}>

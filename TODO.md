@@ -1,0 +1,16 @@
+- [x] cat
+- [ ] cd
+- [ ] clear
+- [ ] curl
+- [ ] date
+- [ ] echo
+- [ ] exit
+- [ ] github
+- [ ] help
+- [ ] history
+- [ ] hostname
+- [ ] ls
+- [ ] pwd
+- [ ] reboot
+- [ ] su
+- [ ] whoami

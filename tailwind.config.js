@@ -29,8 +29,7 @@ export default {
         pink: "#FF79C6",
       },
       fontFamily: {
-        "fira-code": ["Fira Code", "monospace"],
-        segoe: "Segoe UI",
+        monospace: "monospace",
       },
       keyframes: {
         blink: {

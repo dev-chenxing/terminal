@@ -3,7 +3,7 @@ import TerminalBody from "./TerminalBody";
 
 const Terminal = () => {
   return (
-    <main className="flex h-full w-[min(100%,_60rem)] cursor-default flex-col overflow-hidden border border-purple bg-bg font-fira-code text-sm shadow-terminal sm:rounded-md md:aspect-[3/2] md:h-auto">
+    <main className="flex h-full w-[min(100%,_60rem)] cursor-default flex-col overflow-hidden border border-purple bg-bg font-monospace text-sm shadow-terminal sm:rounded-md md:aspect-[3/2] md:h-auto">
       <TerminalHeader />
       <TerminalBody />
     </main>
