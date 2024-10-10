@@ -1,6 +1,7 @@
 import { Prompt } from "../types";
 import cat from "./commands/cat";
 import cd from "./commands/cd";
+import curl from "./commands/curl";
 import ls from "./commands/ls";
 
 const COMMANDS: Record<
@@ -8,6 +9,7 @@ const COMMANDS: Record<
   (username: string, args: string[], history: string[], workingDirectory: string) => string
 > = {
   cd: (_, args) => cd(args),
+  curl: async (_, args) => curl(args),
   su: () => "",
   whoami: (username) => username,
   pwd: () => "/",

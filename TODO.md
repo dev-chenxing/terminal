@@ -1,6 +1,6 @@
 - [x] cat
-- [ ] cd
-- [ ] clear
+- [x] cd
+- [x] clear
 - [ ] curl
 - [ ] date
 - [ ] echo
