@@ -10,10 +10,11 @@ import { getCommandResponse } from "../../lib/commands";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import cat from "../../lib/commands/cat";
 
-interface TerminalBodyProps { }
+interface TerminalBodyProps {}
 
 const TerminalBody: FC<TerminalBodyProps> = () => {
   const { username, setUsername } = useUsernameContext();
+  const { workingDirectory, setWorkingDirectory } = useState<string>("~");
 
   const [history, setHistory] = useState<History[]>([]);
   const [welcomeVisible, setWelcomeVisible] = useState(true);
@@ -43,6 +44,10 @@ const TerminalBody: FC<TerminalBodyProps> = () => {
 
     if (command === "su") {
       setUsername(args[0]);
+    }
+
+    if (command == "cd") {
+      setWorkingDirectory(args[0]);
     }
 
     setHistory((prev) => [

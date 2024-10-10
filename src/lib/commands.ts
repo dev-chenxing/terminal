@@ -6,6 +6,7 @@ const COMMANDS: Record<
   string,
   (username: string, args: string[], history: string[]) => string
 > = {
+  cd: () => "",
   su: () => "",
   whoami: (username) => username,
   pwd: () => "/",

@@ -7,7 +7,7 @@ interface TerminalPromptProps {
   username: string;
 }
 
-const TerminalPrompt: FC<TerminalPromptProps> = ({ children, username }) => {
+const TerminalPrompt: FC<TerminalPromptProps> = ({ children, username, workingDirectory }) => {
   const isRoot = username === "root";
   const borderColor = isRoot ? "text-blue" : "text-green";
   const usernameColor = isRoot ? "text-cyan" : "text-blue";
@@ -30,7 +30,7 @@ const TerminalPrompt: FC<TerminalPromptProps> = ({ children, username }) => {
           {hostname}
         </span>
         <span className={borderColor}>)-[</span>
-        <span className="text-yellow">~</span>
+        <span className="text-yellow">{workingDirectory}</span>
         <span className={borderColor}>]</span>
       </div>
 

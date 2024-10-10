@@ -40,7 +40,7 @@ const UsernameContextProvider: FC<UsernameContextProviderProps> = ({
   }
 
   useEffect(() => {
-    document.title = `${username}@${hostname}: ~`;
+    document.title = `${username}@${hostname}: ${workingDirectory}`;
   }, [username]);
 
   return (
