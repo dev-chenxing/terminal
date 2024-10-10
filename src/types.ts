@@ -3,6 +3,7 @@ export type History = {
   prompt: string;
   response: string;
   username: string;
+  workingDirectory: string;
 };
 
 export type Prompt = {

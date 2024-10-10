@@ -48,7 +48,12 @@ const TerminalBody: FC<TerminalBodyProps> = () => {
     }
 
     if (command == "cd") {
-      setWorkingDirectory(args[0]);
+      if (args.length == 0) {
+        setWorkingDirectory("~");
+      }
+      else if (args.length == 1) {
+        setWorkingDirectory(args[0]);
+      }
     }
 
     setHistory((prev) => [
@@ -57,10 +62,12 @@ const TerminalBody: FC<TerminalBodyProps> = () => {
         id: uuidv4(),
         prompt,
         username,
+        workingDirectory,
         response: getCommandResponse(
           { command, args, sudo },
           username,
-          promptHistory
+          promptHistory,
+          workingDirectory
         ),
       },
     ]);
@@ -76,7 +83,7 @@ const TerminalBody: FC<TerminalBodyProps> = () => {
 
       {history.map((item) => (
         <Fragment key={item.id}>
-          <TerminalPrompt username={item.username}>
+          <TerminalPrompt username={item.username} workingDirectory={item.workingDirectory}>
             {parse(getColorfulPrompt(item.prompt))}
           </TerminalPrompt>
           <div>

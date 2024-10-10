@@ -1,19 +1,20 @@
 import { Prompt } from "../types";
 import cat from "./commands/cat";
+import cd from "./commands/cd";
 import ls from "./commands/ls";
 
 const COMMANDS: Record<
   string,
-  (username: string, args: string[], history: string[]) => string
+  (username: string, args: string[], history: string[], workingDirectory: string) => string
 > = {
-  cd: () => "",
+  cd: (_, args) => cd(args),
   su: () => "",
   whoami: (username) => username,
   pwd: () => "/",
   date: () => new Date().toLocaleDateString(),
   github: () => openLink("https://github.com/"),
   cat: (_, args) => cat(args),
-  ls: () => ls(),
+  ls: (_, __, ___, workingDirectory) => ls(workingDirectory),
   echo: (_, args) => args.join("&nbsp;"),
   history: (_, __, history) => history.join("<br/>"),
 };
@@ -25,13 +26,14 @@ export const COMMAND_NAMES = [...Object.keys(COMMANDS), "clear", "help"].sort(
 export function getCommandResponse(
   { command, sudo, args }: Prompt,
   username: string,
-  history: string[]
+  history: string[],
+  workingDirectory: string
 ) {
   if (sudo && !command) return "Usage: sudo [command] [args]";
   if (!command) return "";
 
   if (command in COMMANDS) {
-    let result = COMMANDS[command](username, args, history);
+    let result = COMMANDS[command](username, args, history, workingDirectory);
     result = result.replace(/\n/g, "<br/>");
     return result;
   }

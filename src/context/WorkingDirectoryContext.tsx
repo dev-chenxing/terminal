@@ -7,6 +7,7 @@ import {
 } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { hostname } from "../TerminalConfig.json";
+import { filesystem } from "../lib/filesystem";
 
 interface WorkingDirectoryContextType {
     workingDirectory: string;
@@ -37,7 +38,10 @@ const WorkingDirectoryContextProvider: FC<WorkingDirectoryContextProviderProps> 
 
     function handleWorkingDirectoryChange(possibleWorkingDirectory?: string | null) {
         const newWorkingDirectory = possibleWorkingDirectory || "~";
-        setWorkingDirectory(newWorkingDirectory);
+        if (filesystem[newWorkingDirectory]) {
+            setWorkingDirectory(newWorkingDirectory);
+        } else if (newWorkingDirectory == "~")
+            setWorkingDirectory("~")
     }
 
     useEffect(() => {
