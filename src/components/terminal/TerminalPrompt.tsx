@@ -5,6 +5,7 @@ import { hostname } from "../../TerminalConfig.json";
 interface TerminalPromptProps {
   children?: ReactNode;
   username: string;
+  workingDirectory?: string
 }
 
 const TerminalPrompt: FC<TerminalPromptProps> = ({ children, username, workingDirectory }) => {

@@ -6,8 +6,12 @@ const cat = (args: string[]) => {
         if (file) {
             if (file.isDir)
                 return `cat: ${arg}: Is a directory`
-            else
-                return file.content ? file.content.replace(/\n/g, "<br/>") : ""
+            else if (typeof file.content === "string") {
+                return file.content.replace(/\n/g, "<br/>")
+            }
+            else {
+                return ""
+            }
         }
         else
             return `cat: ${arg}: No such file or directory`

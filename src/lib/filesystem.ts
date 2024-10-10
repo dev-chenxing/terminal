@@ -1,4 +1,4 @@
-type FauxDirectory = {
+interface FauxDirectory {
   [file: string]: FauxFile;
 };
 
@@ -12,9 +12,8 @@ interface FauxFileSystem {
 }
 
 export const filesystem: FauxFileSystem = {
-  "~": {
-    "CODE_OF_CONDUCT.md": {
-      content: `# Contributor Covenant Code of Conduct
+  "CODE_OF_CONDUCT.md": {
+    content: `# Contributor Covenant Code of Conduct
 
 ## Our Pledge
 
@@ -24,45 +23,44 @@ our community a harassment-free experience for everyone, regardless of age, body
 size, disability, ethnicity, gender identity and expression, level of experience,
 education, socio-economic status, nationality, personal appearance, race,
 religion, or sexual identity and orientation.`,
-      isDir: false,
-    },
-    "CONTRIBUTING.md": {
-      content: ``,
-      isDir: false,
-    },
-    dist: {
-      content: {},
-      isDir: true,
-    },
-    "eslint.config.js": {
-      content: ``,
-      isDir: false,
-    },
-    "index.html": {
-      content: ``,
-      isDir: false,
-    },
-    LICENSE: {
-      content: ``,
-      isDir: false,
-    },
-    node_modules: {
-      content: {},
-      isDir: true,
-    },
-    "package.json": {
-      content: ``,
-      isDir: false,
-    },
-    "tsconfig.node.tsbuildinfo": {
-      content: ``,
-      isDir: false,
-    },
-    "welcome.txt": {
-      content: `Terminal-Style Website [version 0.1.0]
+    isDir: false,
+  },
+  "CONTRIBUTING.md": {
+    content: ``,
+    isDir: false,
+  },
+  dist: {
+    content: {},
+    isDir: true,
+  },
+  "eslint.config.js": {
+    content: ``,
+    isDir: false,
+  },
+  "index.html": {
+    content: ``,
+    isDir: false,
+  },
+  LICENSE: {
+    content: ``,
+    isDir: false,
+  },
+  node_modules: {
+    content: {},
+    isDir: true,
+  },
+  "package.json": {
+    content: ``,
+    isDir: false,
+  },
+  "tsconfig.node.tsbuildinfo": {
+    content: ``,
+    isDir: false,
+  },
+  "welcome.txt": {
+    content: `Terminal-Style Website [version 0.1.0]
 (c) <a href="https://github.com/dev-chenxing" target="_blank" rel="noopener noreferrer">chen.xing</a>
 Type 'help' to see the available commands.`,
-      isDir: false,
-    },
+    isDir: false,
   },
 };

@@ -3,6 +3,7 @@ import { GrFormClose } from "react-icons/gr";
 import { useUsernameContext } from "../../context/UsernameContext";
 import { IoTerminal } from "react-icons/io5";
 import { hostname } from "../../TerminalConfig.json";
+import { useWorkingDirectoryContext } from "../../context/WorkingDirectoryContext";
 
 interface TerminalHeaderProps {}
 

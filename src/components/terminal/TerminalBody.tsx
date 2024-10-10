@@ -6,15 +6,16 @@ import { getColorfulPrompt, processPrompt } from "../../lib/utils";
 import { v4 as uuidv4 } from "uuid";
 import parse from "html-react-parser";
 import { useUsernameContext } from "../../context/UsernameContext";
+import { useWorkingDirectoryContext } from "../../context/WorkingDirectoryContext";
 import { getCommandResponse } from "../../lib/commands";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import cat from "../../lib/commands/cat";
 
-interface TerminalBodyProps {}
+interface TerminalBodyProps { }
 
 const TerminalBody: FC<TerminalBodyProps> = () => {
   const { username, setUsername } = useUsernameContext();
-  const { workingDirectory, setWorkingDirectory } = useState<string>("~");
+  const { workingDirectory, setWorkingDirectory } = useWorkingDirectoryContext();
 
   const [history, setHistory] = useState<History[]>([]);
   const [welcomeVisible, setWelcomeVisible] = useState(true);
@@ -86,7 +87,7 @@ const TerminalBody: FC<TerminalBodyProps> = () => {
         </Fragment>
       ))}
 
-      <TerminalPrompt username={username}>
+      <TerminalPrompt username={username} workingDirectory={workingDirectory}>
         <TerminalPromptInput
           history={promptHistory}
           onEnter={handlePromptEnter}

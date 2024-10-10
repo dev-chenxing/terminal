@@ -3,10 +3,9 @@ import {
   FC,
   PropsWithChildren,
   useContext,
-  useEffect,
 } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { hostname } from "../TerminalConfig.json";
+import WorkingDirectoryContextProvider from "./WorkingDirectoryContext";
 
 interface UsernameContextType {
   username: string;
@@ -27,7 +26,7 @@ export function useUsernameContext() {
   return context;
 }
 
-interface UsernameContextProviderProps extends PropsWithChildren {}
+interface UsernameContextProviderProps extends PropsWithChildren { }
 
 const UsernameContextProvider: FC<UsernameContextProviderProps> = ({
   children,
@@ -39,15 +38,17 @@ const UsernameContextProvider: FC<UsernameContextProviderProps> = ({
     setUsername(newUsername);
   }
 
-  useEffect(() => {
-    document.title = `${username}@${hostname}: ${workingDirectory}`;
-  }, [username]);
+  // useEffect(() => {
+  //   document.title = `${username}@${hostname}: ${workingDirectory}`;
+  // }, [username]);
 
   return (
     <UsernameContext.Provider
       value={{ username, setUsername: handleUsernameChange }}
     >
-      {children}
+      <WorkingDirectoryContextProvider username={username}>
+        {children}
+      </WorkingDirectoryContextProvider>
     </UsernameContext.Provider>
   );
 };
