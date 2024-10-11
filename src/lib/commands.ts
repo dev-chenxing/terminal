@@ -43,7 +43,15 @@ const COMMANDS: Record<string, CommandData> = {
   },
   echo: { callback: (_, args) => args.join("&nbsp;"), usage: "echo [arg ...]" },
   history: {
-    callback: (_, __, history) => history.join("<br/>"),
+    callback: (_, __, history) =>
+      "<table>" +
+      history
+        .map(
+          (h, index) =>
+            `<tr><td style="text-align: right; padding-right: 10px">${index + 1}</td><td>${h}</td></tr>`
+        )
+        .join("") +
+      "</table>",
     usage: "history",
   },
 };
