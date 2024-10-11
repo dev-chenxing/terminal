@@ -4,39 +4,64 @@ import cd from "./commands/cd";
 import curl from "./commands/curl";
 import ls from "./commands/ls";
 
-const COMMANDS: Record<
-  string,
-  (
+type CommandData = {
+  callback: (
     username: string,
+
     args: string[],
     history: string[],
     workingDirectory: string
-  ) => string
-> = {
-  cd: (_, args) => cd(args),
-  curl: async (_, args) => curl(args),
-  su: () => "",
-  whoami: (username) => username,
-  pwd: () => "/",
-  date: () =>
-    new Date().toLocaleDateString(undefined, {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
-    }),
-  github: () => openLink("https://github.com/"),
-  cat: (_, args) => cat(args),
-  ls: (_, __, ___, workingDirectory) => ls(workingDirectory),
-  echo: (_, args) => args.join("&nbsp;"),
-  history: (_, __, history) => history.join("<br/>"),
+  ) => string;
+  usage: string;
 };
 
-export const COMMAND_NAMES = [...Object.keys(COMMANDS), "clear", "help"].sort(
-  (a, z) => a.localeCompare(z)
-);
+const COMMANDS: Record<string, CommandData> = {
+  cd: { callback: (_, args) => cd(args), usage: "cd [dir]" },
+  exit: { callback: () => "", usage: "exit" },
+  su: { callback: () => "", usage: "su" },
+  whoami: { callback: (username) => username, usage: "whoami" },
+  pwd: {
+    callback: (_, __, ___, workingDirectory) => workingDirectory,
+    usage: "pwd",
+  },
+  date: {
+    callback: () =>
+      new Date().toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+      }),
+    usage: "date",
+  },
+  github: { callback: () => openLink("https://github.com/"), usage: "github" },
+  cat: { callback: (_, args) => cat(args), usage: "cat [arg ...]" },
+  ls: {
+    callback: (_, __, ___, workingDirectory) => ls(workingDirectory),
+    usage: "ls",
+  },
+  echo: { callback: (_, args) => args.join("&nbsp;"), usage: "echo [arg ...]" },
+  history: {
+    callback: (_, __, history) =>
+      "<table>" +
+      history
+        .map(
+          (h, index) =>
+            `<tr><td style="text-align: right; padding-right: 10px">${index + 1}</td><td>${h}</td></tr>`
+        )
+        .join("") +
+      "</table>",
+    usage: "history",
+  },
+};
+
+export const COMMAND_NAMES = [
+  ...Object.keys(COMMANDS).map((name) => COMMANDS[name].usage),
+  "clear",
+  "help",
+].sort((a, z) => a.localeCompare(z));
 
 export function getCommandResponse(
   { command, sudo, args }: Prompt,
@@ -48,13 +73,24 @@ export function getCommandResponse(
   if (!command) return "";
 
   if (command in COMMANDS) {
-    let result = COMMANDS[command](username, args, history, workingDirectory);
+    let result = COMMANDS[command].callback(
+      username,
+      args,
+      history,
+      workingDirectory
+    );
     result = result.replace(/\n/g, "<br/>");
     return result;
   }
 
   if (command === "help") {
-    return COMMAND_NAMES.join("<br/>");
+    return (
+      '<div class="help">' +
+      COMMAND_NAMES.map((command) => {
+        return `<span>${command}</span>`;
+      }).join(" ") +
+      "</div>"
+    );
   }
 
   return `${command}: command not found`;
