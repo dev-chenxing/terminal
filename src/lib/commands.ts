@@ -5,13 +5,26 @@ import ls from "./commands/ls";
 
 const COMMANDS: Record<
   string,
-  (username: string, args: string[], history: string[], workingDirectory: string) => string
+  (
+    username: string,
+    args: string[],
+    history: string[],
+    workingDirectory: string
+  ) => string
 > = {
   cd: (_, args) => cd(args),
   su: () => "",
   whoami: (username) => username,
   pwd: () => "/",
-  date: () => new Date().toLocaleDateString(),
+  date: () =>
+    new Date().toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+    }),
   github: () => openLink("https://github.com/"),
   cat: (_, args) => cat(args),
   ls: (_, __, ___, workingDirectory) => ls(workingDirectory),
@@ -39,7 +52,7 @@ export function getCommandResponse(
   }
 
   if (command === "help") {
-    return COMMAND_NAMES.join("<br/>")
+    return COMMAND_NAMES.join("<br/>");
   }
 
   return `${command}: command not found`;
