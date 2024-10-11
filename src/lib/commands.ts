@@ -1,7 +1,6 @@
 import { Prompt } from "../types";
 import cat from "./commands/cat";
 import cd from "./commands/cd";
-import curl from "./commands/curl";
 import ls from "./commands/ls";
 
 type CommandData = {
