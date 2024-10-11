@@ -2,10 +2,10 @@
 - [ ] cd
 - [ ] clear
 - [ ] curl
-- [ ] date
-- [ ] echo
-- [ ] exit
-- [ ] github
+- [x] date
+- [x] echo
+- [x] exit
+- [x] github
 - [ ] help
 - [ ] history
 - [ ] hostname

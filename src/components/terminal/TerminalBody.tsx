@@ -11,11 +11,12 @@ import { getCommandResponse } from "../../lib/commands";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import cat from "../../lib/commands/cat";
 
-interface TerminalBodyProps { }
+interface TerminalBodyProps {}
 
 const TerminalBody: FC<TerminalBodyProps> = () => {
   const { username, setUsername } = useUsernameContext();
-  const { workingDirectory, setWorkingDirectory } = useWorkingDirectoryContext();
+  const { workingDirectory, setWorkingDirectory } =
+    useWorkingDirectoryContext();
 
   const [history, setHistory] = useState<History[]>([]);
   const [welcomeVisible, setWelcomeVisible] = useState(true);
@@ -43,6 +44,10 @@ const TerminalBody: FC<TerminalBodyProps> = () => {
       return;
     }
 
+    if (command === "exit") {
+      window.close();
+    }
+
     if (command === "su") {
       setUsername(args[0]);
     }
@@ -50,8 +55,7 @@ const TerminalBody: FC<TerminalBodyProps> = () => {
     if (command == "cd") {
       if (args.length == 0) {
         setWorkingDirectory("~");
-      }
-      else if (args.length == 1) {
+      } else if (args.length == 1) {
         setWorkingDirectory(args[0]);
       }
     }
@@ -83,7 +87,10 @@ const TerminalBody: FC<TerminalBodyProps> = () => {
 
       {history.map((item) => (
         <Fragment key={item.id}>
-          <TerminalPrompt username={item.username} workingDirectory={item.workingDirectory}>
+          <TerminalPrompt
+            username={item.username}
+            workingDirectory={item.workingDirectory}
+          >
             {parse(getColorfulPrompt(item.prompt))}
           </TerminalPrompt>
           <div>
