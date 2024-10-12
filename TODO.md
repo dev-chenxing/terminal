@@ -1,14 +1,14 @@
 - [x] cat
-- [ ] cd
-- [ ] clear
+- [x] cd
+- [x] clear
 - [ ] curl
 - [x] date
 - [x] echo
 - [x] exit
 - [x] github
-- [ ] help
-- [ ] history
-- [ ] hostname
+- [x] help
+- [x] history
+- [x] hostname
 - [ ] ls
 - [ ] pwd
 - [ ] reboot

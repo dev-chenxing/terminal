@@ -1,8 +1,8 @@
-import curl from "./commands/curl";
 import { Prompt } from "../types";
 import cat from "./commands/cat";
 import cd from "./commands/cd";
 import ls from "./commands/ls";
+import { hostname } from "../TerminalConfig.json";
 
 type CommandData = {
   callback: (
@@ -16,8 +16,8 @@ type CommandData = {
 
 const COMMANDS: Record<string, CommandData> = {
   cd: { callback: (_, args) => cd(args), usage: "cd [dir]" },
-  curl: { callback: (_, args) => curl(args), usage: "cd [url ...]" },
   exit: { callback: () => "", usage: "exit" },
+  hostname: { callback: () => hostname, usage: "hostname" },
   su: { callback: () => "", usage: "su" },
   whoami: { callback: (username) => username, usage: "whoami" },
   pwd: {
