@@ -9,8 +9,8 @@
 - [x] help
 - [x] history
 - [x] hostname
-- [ ] ls
-- [ ] pwd
+- [x] ls
+- [x] pwd
 - [ ] reboot
 - [ ] su
 - [ ] whoami
