@@ -11,6 +11,5 @@
 - [x] hostname
 - [x] ls
 - [x] pwd
-- [ ] reboot
-- [ ] su
-- [ ] whoami
+- [x] su
+- [x] whoami
