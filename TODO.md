@@ -6,11 +6,11 @@
 - [x] echo
 - [x] exit
 - [x] github
-- [ ] help
-- [ ] history
-- [ ] hostname
-- [ ] ls
-- [ ] pwd
+- [x] help
+- [x] history
+- [x] hostname
+- [x] ls
+- [x] pwd
 - [ ] reboot
 - [ ] su
 - [ ] whoami
