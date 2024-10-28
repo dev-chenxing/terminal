@@ -57,7 +57,11 @@ const COMMANDS: Record<string, CommandData> = {
   },
 };
 
-export const COMMAND_NAMES = [
+export const COMMAND_NAMES = [...Object.keys(COMMANDS), "clear", "help"].sort(
+  (a, z) => a.localeCompare(z)
+);
+
+export const COMMAND_USAGE = [
   ...Object.keys(COMMANDS).map((name) => COMMANDS[name].usage),
   "clear",
   "help",
@@ -86,7 +90,7 @@ export function getCommandResponse(
   if (command === "help") {
     return (
       '<div class="help">' +
-      COMMAND_NAMES.map((command) => {
+      COMMAND_USAGE.map((command) => {
         return `<span>${command}</span>`;
       }).join(" ") +
       "</div>"

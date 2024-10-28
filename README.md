@@ -1,6 +1,6 @@
 <h1><a href="https://dev-chenxing.github.io/terminal/" target="_blank">Terminal-Style Website</a></h1>
 
-<img src="./screenshots/2024-09-30.png" alt="screenshot">
+<img src="./screenshots/2024-10-28.png" alt="screenshot">
 
 ## Features
 
@@ -22,4 +22,7 @@ npm i --verbose
 
 # 3. Run the app
 npm run dev
+
+# 4. Deploy the app
+npm run deploy
 ```
